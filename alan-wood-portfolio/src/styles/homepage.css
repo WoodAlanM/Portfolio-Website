@@ -1,0 +1,118 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.full-height-image {
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0; /* Start fully transparent */
+    transition: opacity 4s ease-in-out; /* Smooth fade-in effect */
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.highlight {
+    position: absolute;
+    border: 2px solid transparent;
+    background-color: rgba(0, 0, 255, 0); /* Semi-transparent blue */
+    animation: draw-border 12s ease forwards, fill-background 1s ease forwards 2s, zoom-out 2s ease forwards 4s;
+    transform-origin: center;
+}
+
+
+@keyframes draw-border {
+    0% {
+        border-color: transparent;
+    }
+    25% {
+        border-top-color: blue;
+    }
+    50% {
+        border-top-color: blue;
+        border-right-color: blue;
+    }
+    75% {
+        border-top-color: blue;
+        border-right-color: blue;
+        border-bottom-color: blue;
+    }
+    100% {
+        border-color: blue;
+    }
+}
+
+/* Animation to fill the background */
+@keyframes fill-background {
+    from {
+        background-color: rgba(0, 0, 255, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 255, 0.2); /* Semi-transparent blue */
+    }
+}
+
+@keyframes zoom-out {
+    from {
+        transform: scale(1); /* Start at normal size */
+    }
+    to {
+        transform: scale(2); /* Zoom in to twice the size */
+    }
+}
+
+/* Specific rectangle positions and sizes */
+.highlight-profile {
+    top: 16.5%;
+    left: 42%;
+    width: 41%;
+    height: 10%;
+}
+
+.highlight-work {
+    top: 28.5%;
+    left: 42%;
+    width: 41%;
+    height: 52%;
+}
+
+.highlight-certifications {
+    top: 82%;
+    left: 42%;
+    width: 41%;
+    height: 10%;
+}
+
+.highlight-contact {
+    top: 16.5%;
+    left: 16%;
+    width: 25%;
+    height: 14%;
+}
+
+.highlight-skills {
+    top: 33%;
+    left: 16%;
+    width: 25%;
+    height: 15%;
+}
+
+.highlight-education {
+    top: 49.5%;
+    left: 16%;
+    width: 25%;
+    height: 21%;
+}
+
+.highlight-languages {
+    top: 72%;
+    left: 16%;
+    width: 25%;
+    height: 20%;
+}
