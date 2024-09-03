@@ -12,8 +12,6 @@ function HomePage() {
   useEffect(() => {
     setIsVisible(true);
 
-    const highlights = highlightRef.current;
-
     const updateImageSize = () => {
       if (resumeRef.current) {
         const rect = resumeRef.current.getBoundingClientRect();
