@@ -7,7 +7,6 @@ function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
   const [resumeLeft, setResumeLeft] = useState(0);
-  const highlightRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setIsVisible(true);

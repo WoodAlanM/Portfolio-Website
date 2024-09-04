@@ -7,7 +7,7 @@ body, html {
     margin: auto;
     object-fit: cover;
     opacity: 0; /* Start fully transparent */
-    transition: opacity 4s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
 
 .fade-in {
@@ -27,7 +27,8 @@ body, html {
     position: absolute;
     border: 2px solid transparent;
     background-color: rgba(0, 0, 255, 0); /* Semi-transparent blue */
-    animation: draw-border 12s ease forwards, fill-background 1s ease forwards 2s, zoom-out 2s ease forwards 4s;
+    animation: draw-border 4s ease forwards, fill-background 4s ease forwards 2s, zoom-out 2s ease forwards 4s;
+    animation-delay: 2s;
     transform-origin: center;
 }
 
@@ -58,67 +59,6 @@ body, html {
         background-color: rgba(0, 0, 255, 0);
     }
     to {
-        background-color: rgba(0, 0, 255, 0.2); /* Semi-transparent blue */
+        background-color: rgba(0, 0, 255, 0.1); /* Semi-transparent blue */
     }
 }
-
-/*
-@keyframes zoom-out {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(2);
-    }
-}
-*/
-
-/* Specific rectangle positions and sizes */
-/* .highlight-profile {
-    top: 20%;
-    left: 44%;
-    width: 36%;
-    height: 10%;
-}
-
-.highlight-work {
-    top: 30.75%;
-    left: 44%;
-    width: 36%;
-    height: 47%;
-}
-
-.highlight-certifications {
-    top: 79%;
-    left: 44%;
-    width: 36%;
-    height: 9%;
-}
-
-.highlight-contact {
-    top: 20%;
-    left: 20%;
-    width: 23.5%;
-    height: 13%;
-}
-
-.highlight-skills {
-    top: 34%;
-    left: 20%;
-    width: 23.5%;
-    height: 15%;
-}
-
-.highlight-education {
-    top: 50%;
-    left: 20%;
-    width: 23.5%;
-    height: 19%;
-}
-
-.highlight-languages {
-    top: 70%;
-    left: 20%;
-    width: 23.5%;
-    height: 18%;
-} */
