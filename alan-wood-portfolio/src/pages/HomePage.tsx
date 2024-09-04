@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import resume from "../assets/homepage/resume.png";
 import "../styles/homepage.css";
+import SectionButton from "../components/SectionButton";
 
 function HomePage() {
   const resumeRef = useRef<HTMLImageElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
   const [resumeLeft, setResumeLeft] = useState(0);
+  const [resumeTop, setResumeTop] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
@@ -20,6 +22,7 @@ function HomePage() {
           height: rect.height,
         });
         setResumeLeft(parseFloat(computedStyle.marginLeft));
+        setResumeTop(parseFloat(computedStyle.marginTop));
       }
     };
 
@@ -55,6 +58,16 @@ function HomePage() {
   return (
     <>
       <div className="container text-center">
+        <SectionButton
+          resumeLeft={resumeLeft}
+          resumeTop={resumeTop}
+          width={resumeSize.width}
+          height={resumeSize.height}
+          topPercent={0.2225}
+          leftPercent={0.41}
+          widthPercent={0.5}
+          heightPercent={0.11}
+        />
         <div className="image-container">
           <img
             src={resume}
