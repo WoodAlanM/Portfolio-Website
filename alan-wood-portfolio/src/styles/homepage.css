@@ -17,17 +17,17 @@ body, html {
     z-index: 10;
 }
 
-.resume-section {
+/* .resume-section {
     background-color: blue;
-    opacity: 0.25;
-    z-index: 11;
-}
+    opacity: 0.75;
+    z-index: 10;
+} */
 
-.section-button {
+/* .section-button {
     background-color: brown;
     opacity: 0.5;
     z-index: 10;
-}
+} */
 
 @keyframes fade-in {
     0% {

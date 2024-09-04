@@ -26,23 +26,23 @@ function SectionButton({
   const selectResumeSection = (): React.CSSProperties => {
     return {
       position: "absolute",
-      top: `${resumeTop}px`,
-      left: `${resumeLeft}px`,
-      width: `${width}px`,
-      height: `${height}px`,
+      top: `${resumeTop + topPercent * height}px`,
+      left: `${leftPercent * width}px`,
+      width: `${width}`,
+      height: `${height}`,
       overflow: "hidden",
     };
   };
 
   const backgroundPosition = (): React.CSSProperties => {
     return {
-      //   backgroundImage: `url(${resume})`,
-      //   backgroundPosition: `top left`,
-      //   backgroundSize: `${width}px ${height}px`,
-      left: `${resumeLeft + leftPercent * width}px`,
-      top: `${resumeTop * topPercent}`,
-      width: `${width}px`,
-      height: `${height}px`,
+        backgroundImage: `url(${resume})`,
+        backgroundPosition: `top left`,
+        backgroundSize: `${width}px ${height}px`,
+        left: `${resumeLeft + leftPercent * width}px`,
+        top: `${resumeTop * topPercent}`,
+        width: `${width}`,
+        height: `${height}`,
     };
   };
 
@@ -59,6 +59,6 @@ function SectionButton({
       </div>
     </>
   );
-}
+};
 
 export default SectionButton;
