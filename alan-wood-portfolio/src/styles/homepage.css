@@ -13,20 +13,14 @@ body, html {
     animation: fade-in 4s ease forwards;
 }
 
-.resume-section:hover {
-    z-index: 10;
-}
-
-/* .resume-section {
-    background-color: blue;
-    opacity: 0.75;
-    z-index: 10;
+/* .resume-section:hover {
+    background-color: green;
+    opacity: 1;
 } */
 
-/* .section-button {
-    background-color: brown;
-    opacity: 0.5;
-    z-index: 10;
+/* .section-button:hover {
+    background-color: green;
+    opacity: 1;
 } */
 
 @keyframes fade-in {
@@ -40,8 +34,11 @@ body, html {
 
 .section-button-container {
     position: absolute;
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .image-container {

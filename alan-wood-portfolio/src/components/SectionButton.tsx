@@ -1,48 +1,80 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import resume from "../assets/homepage/resume.png";
 import "../styles/homepage.css";
 
 interface Props {
-  leftPercent: number;
   topPercent: number;
+  leftPercent: number;
   widthPercent: number;
   heightPercent: number;
-  resumeTop: number;
-  resumeLeft: number;
-  width: number;
-  height: number;
+  resumeRef: React.RefObject<HTMLImageElement>;
 }
 
 function SectionButton({
-  leftPercent,
   topPercent,
+  leftPercent,
   widthPercent,
   heightPercent,
-  resumeTop,
-  resumeLeft,
-  width,
-  height,
+  resumeRef,
 }: Props) {
+  const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
+  const [resumeLeft, setResumeLeft] = useState(0);
+  const [resumeTop, setResumeTop] = useState(0);
+
+  useEffect(() => {
+    const updateImageSize = () => {
+      if (resumeRef.current) {
+        const rect = resumeRef.current.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(resumeRef.current);
+        setImageSize({
+          width: rect.width,
+          height: rect.height,
+        });
+        setResumeLeft(parseFloat(computedStyle.marginLeft));
+        setResumeTop(parseFloat(computedStyle.marginTop));
+      }
+    };
+
+    // Need to make it update on page reload
+
+    // Update the size after the image has loaded
+    if (resumeRef.current) {
+      if (resumeRef.current.complete) {
+        updateImageSize();
+      } else {
+        resumeRef.current.onload = updateImageSize;
+      }
+    }
+
+    // Update the size on window resize
+    window.addEventListener("resize", updateImageSize);
+
+    return () => window.removeEventListener("resize", updateImageSize);
+  }, []);
+
   const selectResumeSection = (): React.CSSProperties => {
     return {
       position: "absolute",
-      top: `${resumeTop + topPercent * height}px`,
-      left: `${leftPercent * width}px`,
-      width: `${width}`,
-      height: `${height}`,
+      top: `${topPercent * resumeSize.height}px`,
+      left: `${resumeLeft + leftPercent * resumeSize.width}px`,
+      width: `${widthPercent * resumeSize.width}px`,
+      height: `${heightPercent * resumeSize.height}px`,
+      backgroundColor: `brown`,
+      opacity: 0.5,
+      zIndex: 10,
+      objectFit: `cover`,
       overflow: "hidden",
     };
   };
 
   const backgroundPosition = (): React.CSSProperties => {
     return {
-        backgroundImage: `url(${resume})`,
-        backgroundPosition: `top left`,
-        backgroundSize: `${width}px ${height}px`,
-        left: `${resumeLeft + leftPercent * width}px`,
-        top: `${resumeTop * topPercent}`,
-        width: `${width}`,
-        height: `${height}`,
+      backgroundImage: `url(${resume})`,
+      backgroundPosition: `top left`,
+      left: `${resumeLeft}px`,
+      top: `${resumeTop}`,
+      width: `${resumeSize.width}`,
+      height: `${resumeSize.height}`,
     };
   };
 
@@ -59,6 +91,6 @@ function SectionButton({
       </div>
     </>
   );
-};
+}
 
 export default SectionButton;

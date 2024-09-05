@@ -59,14 +59,11 @@ function HomePage() {
     <>
       <div className="container text-center">
         <SectionButton
-          resumeLeft={resumeLeft}
-          resumeTop={resumeTop}
-          width={resumeSize.width}
-          height={resumeSize.height}
           topPercent={0.2225}
-          leftPercent={0.41}
-          widthPercent={0.5}
-          heightPercent={0.11}
+          leftPercent={0.1}
+          widthPercent={0.29}
+          heightPercent={0.145}
+          resumeRef={resumeRef}
         />
         <div className="image-container">
           <img
