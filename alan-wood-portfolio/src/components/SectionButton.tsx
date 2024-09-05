@@ -8,6 +8,8 @@ interface Props {
   widthPercent: number;
   heightPercent: number;
   resumeRef: React.RefObject<HTMLImageElement>;
+  offsetX: number;
+  offsetY: number;
 }
 
 function SectionButton({
@@ -16,6 +18,9 @@ function SectionButton({
   widthPercent,
   heightPercent,
   resumeRef,
+  offsetX,
+  offsetY,
+  // Add offsets x, y
 }: Props) {
   const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
   const [resumeLeft, setResumeLeft] = useState(0);
@@ -55,38 +60,45 @@ function SectionButton({
   const selectResumeSection = (): React.CSSProperties => {
     return {
       position: "absolute",
-      top: `${topPercent * resumeSize.height}px`,
-      left: `${resumeLeft + leftPercent * resumeSize.width}px`,
+      boxShadow: `${-offsetX / 2}px ${-offsetY / 2}px 10px black`,
+      top: `${topPercent * resumeSize.height + offsetY}px`,
+      left: `${resumeLeft + leftPercent * resumeSize.width + offsetX}px`,
       width: `${widthPercent * resumeSize.width}px`,
       height: `${heightPercent * resumeSize.height}px`,
-      backgroundColor: `brown`,
-      opacity: 0.5,
+      opacity: 1,
+      border: `1px solid black`,
       zIndex: 10,
-      objectFit: `cover`,
+      objectFit: `none`,
       overflow: "hidden",
     };
   };
 
   const backgroundPosition = (): React.CSSProperties => {
+    let widthCenter = (resumeSize.width * widthPercent) / 2;
+    let heightCenter = (resumeSize.height * heightPercent) / 2;
+
+    console.log(widthCenter)
+    console.log(heightCenter)
+
     return {
-      backgroundImage: `url(${resume})`,
-      backgroundPosition: `top left`,
-      left: `${resumeLeft}px`,
-      top: `${resumeTop}`,
-      width: `${resumeSize.width}`,
-      height: `${resumeSize.height}`,
+      width: `${resumeSize.width}px`,
+      height: `${resumeSize.height}px`,
+      objectFit: `cover`,
+      objectPosition: `${-widthCenter * (1 - leftPercent) - offsetX}px ${heightCenter * (1 - topPercent) + topPercent * resumeSize.height * -1}px`,
     };
   };
 
   return (
     <>
       <div className="section-button-container">
-        <div className="section-button" style={selectResumeSection()}>
-          <img
-            src={resume}
-            className="resume-section"
-            style={backgroundPosition()}
-          />
+        <div className="">
+          <div className="section-button" style={selectResumeSection()}>
+            <img
+              src={resume}
+              className="resume-section"
+              style={backgroundPosition()}
+            />
+          </div>
         </div>
       </div>
     </>

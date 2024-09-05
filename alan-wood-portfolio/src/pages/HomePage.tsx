@@ -58,12 +58,75 @@ function HomePage() {
   return (
     <>
       <div className="container text-center">
+        {/* Contact section button */}
         <SectionButton
           topPercent={0.2225}
           leftPercent={0.1}
           widthPercent={0.29}
           heightPercent={0.145}
           resumeRef={resumeRef}
+          offsetX={-20}
+          offsetY={-20}
+        />
+        {/* Skills section button */}
+        <SectionButton
+          topPercent={0.38}
+          leftPercent={0.1}
+          widthPercent={0.29}
+          heightPercent={0.155}
+          resumeRef={resumeRef}
+          offsetX={-20}
+          offsetY={-11}
+        />
+        {/* Education section button */}
+        <SectionButton
+          topPercent={0.55}
+          leftPercent={0.1}
+          widthPercent={0.29}
+          heightPercent={0.21}
+          resumeRef={resumeRef}
+          offsetX={-20}
+          offsetY={8}
+        />
+        {/* Languages section button */}
+        <SectionButton
+          topPercent={0.7725}
+          leftPercent={0.1}
+          widthPercent={0.29}
+          heightPercent={0.205}
+          resumeRef={resumeRef}
+          offsetX={-20}
+          offsetY={14}
+        />
+        {/* Profile section button */}
+        <SectionButton
+          topPercent={0.2225}
+          leftPercent={0.41}
+          widthPercent={0.5}
+          heightPercent={0.11}
+          resumeRef={resumeRef}
+          offsetX={+20}
+          offsetY={-20}
+        />
+        {/* Work section button */}
+        <SectionButton
+          topPercent={0.34}
+          leftPercent={0.41}
+          widthPercent={0.5}
+          heightPercent={0.53}
+          resumeRef={resumeRef}
+          offsetX={+20}
+          offsetY={1}
+        />
+        {/* Certifications section button */}
+        <SectionButton
+          topPercent={0.877}
+          leftPercent={0.41}
+          widthPercent={0.5}
+          heightPercent={0.1}
+          resumeRef={resumeRef}
+          offsetX={+20}
+          offsetY={15}
         />
         <div className="image-container">
           <img
