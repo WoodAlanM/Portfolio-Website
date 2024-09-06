@@ -12,6 +12,8 @@ interface Props {
   backgroundOffsetY: number;
   offsetX: number;
   offsetY: number;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 function SectionButton({
@@ -24,11 +26,12 @@ function SectionButton({
   backgroundOffsetY,
   offsetX,
   offsetY,
-  // Add offsets x, y
+  className,
+  style,
 }: Props) {
   const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
   const [resumeLeft, setResumeLeft] = useState(0);
-  const [resumeTop, setResumeTop] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const updateImageSize = () => {
@@ -40,7 +43,6 @@ function SectionButton({
           height: rect.height,
         });
         setResumeLeft(parseFloat(computedStyle.marginLeft));
-        setResumeTop(parseFloat(computedStyle.marginTop));
       }
     };
 
@@ -58,22 +60,14 @@ function SectionButton({
     // Update the size on window resize
     window.addEventListener("resize", updateImageSize);
 
+    updateImageSize();
+
     return () => window.removeEventListener("resize", updateImageSize);
-  }, []);
-
-  let locationTop = resumeTop + offsetX;
-  let locationLeft = resumeLeft + offsetY;
-
-  const sectionButtonContainerCSS = (): React.CSSProperties => {
-    return {
-      backgroundRepeat: `no-repeat`,
-      zIndex: 10,
-    };
-  };
+  }, [])
 
   const imageContainerCSS = (): React.CSSProperties => {
     return {
-      zIndex: 10,
+      opacity: 0,
       position: `absolute`,
       boxShadow: `${backgroundOffsetX * -1}px ${backgroundOffsetY * -1}px 15px black`,
       border: `1px solid black`,
@@ -81,19 +75,26 @@ function SectionButton({
       left: `${resumeLeft + leftPercent * resumeSize.width + backgroundOffsetX}px`,
       width: `${widthPercent * resumeSize.width}px`,
       height: `${heightPercent * resumeSize.height}px`,
-      overflow: `hidden`,  // Hide any overflow
-      backgroundImage: `url(${resume})`,  // Set the image here too
-      backgroundSize: `${resumeSize.width}px ${resumeSize.height}px`,  // Same size as parent
-      // backgroundPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
+      overflow: `hidden`,
+      backgroundImage: `url(${resume})`,
+      backgroundSize: `${resumeSize.width}px ${resumeSize.height}px`,
       backgroundPosition: `calc(${leftPercent * 100}% + ${offsetX}px) calc(${topPercent * 100}% - ${offsetY}px)`,
+      transform: isHovered ? `scale(1.2)` : `scale(1)`,
+      zIndex: isHovered ? 20 : 10,
+      transition: `all 0.5s ease`,
+      ...style,
     };
   };
 
   return (
     <>
       <div className="hover-div">
-        <div className="section-button" style={imageContainerCSS()}>
-
+        <div 
+          className={`section-button ${className || ''}`} 
+          style={imageContainerCSS()}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
         </div>      
       </div>
     </>

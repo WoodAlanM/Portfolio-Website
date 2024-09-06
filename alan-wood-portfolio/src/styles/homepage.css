@@ -13,16 +13,6 @@ body, html {
     animation: fade-in 4s ease forwards;
 }
 
-/* .resume-section:hover {
-    background-color: green;
-    opacity: 1;
-} */
-
-/* .section-button:hover {
-    background-color: green;
-    opacity: 1;
-} */
-
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -32,10 +22,19 @@ body, html {
     }
 }
 
-/* Maybe this can give me some action stuff */
-/* .hover-div {
-
-} */
+@keyframes delayed-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+.delayed-fade-in {
+    animation: delayed-fade-in 2s ease-in forwards;
+    animation-delay: var(--fade-delay, 0s); /* Use CSS variable for delay */
+}
 
 .image-container {
     position: relative;
@@ -51,7 +50,7 @@ body, html {
     border: 2px solid transparent;
     background-color: rgba(0, 0, 255, 0); /* Semi-transparent blue */
     animation: draw-border 4s ease forwards, fill-background 4s ease forwards 2s, zoom-out 2s ease forwards 4s;
-    animation-delay: 2s;
+    animation-delay: 3s;
 }
 
 @keyframes draw-border {
