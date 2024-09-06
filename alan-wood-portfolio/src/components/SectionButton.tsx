@@ -8,6 +8,8 @@ interface Props {
   widthPercent: number;
   heightPercent: number;
   resumeRef: React.RefObject<HTMLImageElement>;
+  backgroundOffsetX: number;
+  backgroundOffsetY: number;
   offsetX: number;
   offsetY: number;
 }
@@ -18,6 +20,8 @@ function SectionButton({
   widthPercent,
   heightPercent,
   resumeRef,
+  backgroundOffsetX,
+  backgroundOffsetY,
   offsetX,
   offsetY,
   // Add offsets x, y
@@ -57,49 +61,40 @@ function SectionButton({
     return () => window.removeEventListener("resize", updateImageSize);
   }, []);
 
-  const selectResumeSection = (): React.CSSProperties => {
+  let locationTop = resumeTop + offsetX;
+  let locationLeft = resumeLeft + offsetY;
+
+  const sectionButtonContainerCSS = (): React.CSSProperties => {
     return {
-      position: "absolute",
-      boxShadow: `${-offsetX / 2}px ${-offsetY / 2}px 10px black`,
-      top: `${topPercent * resumeSize.height + offsetY}px`,
-      left: `${resumeLeft + leftPercent * resumeSize.width + offsetX}px`,
-      width: `${widthPercent * resumeSize.width}px`,
-      height: `${heightPercent * resumeSize.height}px`,
-      opacity: 1,
-      border: `1px solid black`,
+      backgroundRepeat: `no-repeat`,
       zIndex: 10,
-      objectFit: `none`,
-      overflow: "hidden",
     };
   };
 
-  const backgroundPosition = (): React.CSSProperties => {
-    let widthCenter = (resumeSize.width * widthPercent) / 2;
-    let heightCenter = (resumeSize.height * heightPercent) / 2;
-
-    console.log(widthCenter)
-    console.log(heightCenter)
-
+  const imageContainerCSS = (): React.CSSProperties => {
     return {
-      width: `${resumeSize.width}px`,
-      height: `${resumeSize.height}px`,
-      objectFit: `cover`,
-      objectPosition: `${-widthCenter * (1 - leftPercent) - offsetX}px ${heightCenter * (1 - topPercent) + topPercent * resumeSize.height * -1}px`,
+      zIndex: 10,
+      position: `absolute`,
+      boxShadow: `${backgroundOffsetX * -1}px ${backgroundOffsetY * -1}px 15px black`,
+      border: `1px solid black`,
+      top: `${topPercent * resumeSize.height + backgroundOffsetY}px`,
+      left: `${resumeLeft + leftPercent * resumeSize.width + backgroundOffsetX}px`,
+      width: `${widthPercent * resumeSize.width}px`,
+      height: `${heightPercent * resumeSize.height}px`,
+      overflow: `hidden`,  // Hide any overflow
+      backgroundImage: `url(${resume})`,  // Set the image here too
+      backgroundSize: `${resumeSize.width}px ${resumeSize.height}px`,  // Same size as parent
+      // backgroundPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
+      backgroundPosition: `calc(${leftPercent * 100}% + ${offsetX}px) calc(${topPercent * 100}% - ${offsetY}px)`,
     };
   };
 
   return (
     <>
-      <div className="section-button-container">
-        <div className="">
-          <div className="section-button" style={selectResumeSection()}>
-            <img
-              src={resume}
-              className="resume-section"
-              style={backgroundPosition()}
-            />
-          </div>
-        </div>
+      <div className="hover-div">
+        <div className="section-button" style={imageContainerCSS()}>
+
+        </div>      
       </div>
     </>
   );

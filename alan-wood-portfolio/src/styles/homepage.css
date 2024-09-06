@@ -32,14 +32,10 @@ body, html {
     }
 }
 
-.section-button-container {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+/* Maybe this can give me some action stuff */
+/* .hover-div {
+
+} */
 
 .image-container {
     position: relative;
