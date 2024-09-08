@@ -63,22 +63,28 @@ function SectionButton({
     updateImageSize();
 
     return () => window.removeEventListener("resize", updateImageSize);
-  }, [])
+  }, []);
 
   const imageContainerCSS = (): React.CSSProperties => {
     return {
       opacity: 0,
       position: `absolute`,
-      boxShadow: `${backgroundOffsetX * -1}px ${backgroundOffsetY * -1}px 15px black`,
+      boxShadow: `${backgroundOffsetX * -1}px ${
+        backgroundOffsetY * -1
+      }px 15px black`,
       border: `1px solid black`,
       top: `${topPercent * resumeSize.height + backgroundOffsetY}px`,
-      left: `${resumeLeft + leftPercent * resumeSize.width + backgroundOffsetX}px`,
+      left: `${
+        resumeLeft + leftPercent * resumeSize.width + backgroundOffsetX
+      }px`,
       width: `${widthPercent * resumeSize.width}px`,
       height: `${heightPercent * resumeSize.height}px`,
       overflow: `hidden`,
       backgroundImage: `url(${resume})`,
       backgroundSize: `${resumeSize.width}px ${resumeSize.height}px`,
-      backgroundPosition: `calc(${leftPercent * 100}% + ${offsetX}px) calc(${topPercent * 100}% - ${offsetY}px)`,
+      backgroundPosition: `calc(${leftPercent * 100}% + ${offsetX}px) calc(${
+        topPercent * 100
+      }% - ${offsetY}px)`,
       transform: isHovered ? `scale(1.2)` : `scale(1)`,
       zIndex: isHovered ? 20 : 10,
       transition: `all 0.5s ease`,
@@ -89,13 +95,12 @@ function SectionButton({
   return (
     <>
       <div className="hover-div">
-        <div 
-          className={`section-button ${className || ''}`} 
+        <div
+          className={`section-button ${className || ""}`}
           style={imageContainerCSS()}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-        >
-        </div>      
+        ></div>
       </div>
     </>
   );
