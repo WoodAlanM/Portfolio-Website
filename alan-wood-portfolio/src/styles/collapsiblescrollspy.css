@@ -1,0 +1,17 @@
+/* src/components/CollapsibleBox.css */
+.collapsible-container {
+    position: fixed;
+    top: 60px;
+    left: 70%;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+.collapsible-box {
+    display: block;
+    margin-top: 10px; /* Space between button and box */
+    padding: 15px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

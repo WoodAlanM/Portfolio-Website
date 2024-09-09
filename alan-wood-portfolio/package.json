@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "alan-wood-portfolio": "file:",
-    "mammoth": "^1.8.0",
+    "marked": "^14.1.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

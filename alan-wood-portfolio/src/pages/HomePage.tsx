@@ -8,7 +8,6 @@ function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [resumeSize, setImageSize] = useState({ width: 0, height: 0 });
   const [resumeLeft, setResumeLeft] = useState(0);
-  const [resumeTop, setResumeTop] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
@@ -22,7 +21,6 @@ function HomePage() {
           height: rect.height,
         });
         setResumeLeft(parseFloat(computedStyle.marginLeft));
-        setResumeTop(parseFloat(computedStyle.marginTop));
       }
     };
 
@@ -45,7 +43,7 @@ function HomePage() {
     topPercent: number,
     leftPercent: number,
     widthPercent: number,
-    heightPercent: number,
+    heightPercent: number
     // delay: number
   ): React.CSSProperties => {
     return {
@@ -73,7 +71,7 @@ function HomePage() {
             offsetX={-20}
             offsetY={-20}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Skills section button */}
           <SectionButton
@@ -87,7 +85,7 @@ function HomePage() {
             offsetX={-20}
             offsetY={6}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Education section button */}
           <SectionButton
@@ -101,7 +99,7 @@ function HomePage() {
             offsetX={-20}
             offsetY={50}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Languages section button */}
           <SectionButton
@@ -115,7 +113,7 @@ function HomePage() {
             offsetX={-20}
             offsetY={89}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Profile section button */}
           <SectionButton
@@ -129,7 +127,7 @@ function HomePage() {
             offsetX={-133}
             offsetY={-30}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Work section button */}
           <SectionButton
@@ -143,7 +141,7 @@ function HomePage() {
             offsetX={-133}
             offsetY={110}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           {/* Certifications section button */}
           <SectionButton
@@ -157,7 +155,7 @@ function HomePage() {
             offsetX={-133}
             offsetY={25}
             className="delayed-fade-in"
-            style={{ '--fade-delay': '4s' } as React.CSSProperties}
+            style={{ "--fade-delay": "4s" } as React.CSSProperties}
           />
           <img
             src={resume}
