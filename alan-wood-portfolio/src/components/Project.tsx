@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from "react";
+import mammoth from "mammoth";
 
 interface ProjectProps {
-  fileName: string; // The filename passed as a prop
+  filePath: string; // The filename passed as a prop
 }
 
-const Project: React.FC<ProjectProps> = ({ fileName }) => {
+const Project: React.FC<ProjectProps> = ({ filePath }) => {
   const [fileContent, setFileContent] = useState<string>("");
-
-  let documentPath = "../assets/projectpage/documents/";
 
   useEffect(() => {
     // Fetch the file from the /documents folder (relative path)
     const fetchDocument = async () => {
       try {
-        const response = await fetch(`/${documentPath}/${fileName}`);
+        const response = await fetch(`${filePath}`);
         if (!response.ok) {
           throw new Error("File not found");
-        }
-        const text = await response.text();
-        const parsedContent = parseContent(text); // Parse and replace image markers
-        setFileContent(parsedContent);
+        }    
+
+        console.log("Response status: ", response.status, response.statusText)
+
+        // Parse html with mammoth
+        const arrayBuffer = await response.arrayBuffer();
+
+        console.log("ArrayBuffer: ", arrayBuffer)
+
+        // const result = await mammoth.convertToHtml({ arrayBuffer });
+
+        const rawTextResult = await mammoth.extractRawText({ arrayBuffer });
+        
+        console.log("Mammoth result: ", rawTextResult)
+
+        const parsedContent = parseContent(rawTextResult.value);
+        const parsedForTabs = handleTabs(parsedContent)
+        setFileContent(parsedForTabs);
       } catch (error) {
         console.error("Error fetching the document:", error);
       }
     };
 
     fetchDocument();
-  }, [fileName]);
+  }, [filePath]);
 
   // Function to parse the content for !!image-location!! markers
   const parseContent = (content: string) => {
@@ -38,9 +51,13 @@ const Project: React.FC<ProjectProps> = ({ fileName }) => {
     });
   };
 
+  const handleTabs = (html: string) => {
+    return html.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+  };
+
   return (
     <div>
-      <h2>{fileName}</h2>
+      <h2>{filePath}</h2>
       <div
         className="document-content"
         dangerouslySetInnerHTML={{ __html: fileContent }}

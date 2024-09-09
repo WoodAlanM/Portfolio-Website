@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Project from "../components/Project";
 
-const ParentComponent = () => {
-  const fileName = "test_project_rtf.rtf"; // Your file in the /documents folder
+const ProjectPage = () => {
+  const testPath = "../assets/projectpage/documents/test_project_from_ODT.docx"; // Your file in the /documents folder
 
   return (
     <div>
       <h1>My Blog Project</h1>
-      <Project fileName={fileName} />
+      <Project filePath={testPath} />
     </div>
   );
 };
 
-export default ParentComponent;
+export default ProjectPage;
