@@ -1,0 +1,2 @@
+Think about adding functionality to make it so the scrollspy window starts at the bottom of the page,
+then moves to the top and stays there. Or make it collapsible. Or shrink blog page portion.
