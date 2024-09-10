@@ -1,2 +1,5 @@
-Think about adding functionality to make it so the scrollspy window starts at the bottom of the page,
-then moves to the top and stays there. Or make it collapsible. Or shrink blog page portion.
+Scrollspy looks like it might struggle with react based bootstrap. I found a library:
+
+https://www.npmjs.com/package/react-ui-scrollspy
+
+Maybe i could give that a try next time.

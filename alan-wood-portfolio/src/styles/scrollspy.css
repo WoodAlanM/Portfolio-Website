@@ -1,13 +1,13 @@
 /* src/components/CollapsibleBox.css */
-.collapsible-container {
+.scrollspy-container {
     position: fixed;
     top: 60px;
-    left: 70%;
+    left: 75%;
     max-width: 300px;
     z-index: 1000;
 }
 
-.collapsible-box {
+.scrollspy-box {
     display: block;
     margin-top: 10px; /* Space between button and box */
     padding: 15px;

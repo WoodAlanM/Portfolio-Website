@@ -1,5 +1,5 @@
 // src/components/MarkdownLoader.js
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -20,7 +20,11 @@ const MarkdownLoader = ({ filePath }: MarkdownLoaderProps) => {
           /!!image-path!!="([^"]+)"/g,
           '<img src="$1" alt="Image" />'
         );
-        setContent(processedText);
+        const processedForTitle = processedText.replace(
+          /!!page-title!!="([^"]+)"/g,
+          '<h1 class="blog-title">$1</h1>'
+        );
+        setContent(processedForTitle);
       })
       .catch((error) => console.error("Error loading Markdown file:", error));
   }, [filePath]);
